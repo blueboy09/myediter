@@ -1,0 +1,21 @@
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# \h:\W \u\$                                                                                                                                                                      
+export PS1='\[\033[01;33m\]\u@\h\[\033[01;31m\] \W\$\[\033[00m\] '
+
+
+#                                                                                                                                                                                 
+alias preview='open -a preview'
+#alias emacs='/Applications/Emacs.app/Contents/MacOS/./Emacs'                                                                                                                     
+
+export PATH="~/bin:/usr/local/bin:/usr/local/share/python:$PATH"
+export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
+export PATH="$/Users/yfjin/Library/Python/2.7/bin:$PATH"
+export PATH="$PATH:/usr/local/mysql/bin:$PATH"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+

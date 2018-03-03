@@ -1,0 +1,125 @@
+# docker initialization install:
+docker
+docker-machine
+docker-compose
+
+# setting port
+sudo vi /lib/systemd/system/docker.service
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:4243
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+#install docker container 
+nvidia-docker
+portainer
+
+# install ubuntu container
+nvidia-docker run -v /home/name/code:/home/name/code -v /home/name/data:/home/name/data -d -it ubuntu:16.04 /bin/bash
+
+exit
+docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
+
+docker stop container-id
+docker login -u docker-registry-username
+docker push docker-registry-username/docker-image-name
+
+
+apt-get remove docker docker-engine docker.io
+apt-get update
+apt-get install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu    $(lsb_release -cs)   stable"
+
+apt-get update
+apt-get install docker-ce
+
+curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+
+curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && \
+install /tmp/docker-machine /usr/local/bin/docker-machine
+docker-machine version
+
+
+docker volume create portainer_data
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+docker service create \
+--name portainer \
+--publish 9000:9000 \
+--replicas=1 \
+--constraint 'node.role == manager' \
+--mount type=bind,src=//var/run/docker.sock,dst=/var/run/docker.sock \
+--mount type=bind,src=//opt/portainer,dst=/data \
+portainer/portainer \
+-H unix:///var/run/docker.sock
+
+# If you have nvidia-docker 1.0 installed: we need to remove it and all existing GPU containers
+docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
+apt-get purge -y nvidia-docker
+
+# Add the package repositories
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu16.04/amd64/nvidia-docker.list |   sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+
+# Install nvidia-docker2 and reload the Docker daemon configuration
+sudo apt-get install -y nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
+# Test nvidia-smi with the latest official CUDA image
+docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+
+
+#volume
+curl -fsSL https://raw.githubusercontent.com/CWSpear/local-persist/master/scripts/install.sh | sudo bash
+docker volume create -d local-persist -o mountpoint=/data/images --name=images
+
+sudo nvidia-docker run -d -p 0.0.0.0:3410:22  —volume-from root astrobob/ubuntu-lab
+
+new user
+
+mkdir /home/docker_users/user
+chmod 777 /home/docker_users/user 
+docker volume create -d local-persist -o mountpoint=/home/docker_users/user --name=user
+sudo nvidia-docker run -d -p 0.0.0.0:3410:22 -P  -v share_data:/home/share_data -v jinyifei:/home/jinyifei astrobob/ubuntu-lab:latest
+
+
+docker 
+
+docker run -t -i ubuntu:15.10 /bin/bash 
+
+docker run -i -t -d ubuntu:16.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+docker ps
+docker logs NAMES/ContainerID
+docker exec -it 98 /bin/bash
+
+sudo docker run -d -p 4444 ubuntu:12.10 /bin/nc -l 4444
+
+
+apt-get update
+apt-get install emacs
+exit
+docker commit -m "What did you do to the image" -a "Author Name" container-id repository/new_image_name
+
+docker stop container-id
+docker login -u docker-registry-username
+docker push docker-registry-username/docker-image-name
+
+
+
+FROM ubuntu:14.04
+RUN apt-get update && apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN useradd test
+RUN echo 'test:screencast' |chpasswd
+
+EXPOSE 22
+CMD    ["/usr/sbin/sshd", "-D", "-o", "Port 2022"]
+docker build -t ssh -< sshDockerfile
+docker run -d --net host ssh
+ssh test@<host IP> -p 2022

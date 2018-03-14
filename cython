@@ -1,1 +1,41 @@
-to be continued
+# system path
+export PATH="/where/is/python/bin:$PATH"
+
+# install cython
+python -m pip install cython
+
+# compile to c
+cython --embed -o program.c program.py
+
+# show the include path and library path
+python-config --cflags 
+
+e.g.
+-I/home1/astrobob/miniconda3/include/python3.6m -I/home1/astrobob/miniconda3/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -mtune=haswell -ftree-vectorize -fPI
+C -fstack-protector-strong -fno-plt -O3 -pipe -flto -fuse-linker-plugin -ffat-lto-objects -DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes
+
+# compile to binary executable program
+# -lpython3.6m is coresponding to -l libpython3.6m.so
+cython program.c -I/path/to/include/ -L/path/to/lib/ -lpython3.6m -o program.o
+
+e.g.:
+gcc hw.c -I/home1/astrobob/miniconda3/include/python3.6m -I/home1/astrobob/miniconda3/include/python3.6m -L/home1/zhangchuheng/
+miniconda3/lib -lpython3.6m -o hw.o
+
+
+# path 
+export LD_LIBRARY_PATH="/path/to/libpython.so:$LD_LIBRARY_PATH"
+
+e.g.
+export LD_LIBRARY_PATH="/home1/astrobob/miniconda3/lib:$LD_LIBRARY_PATH"
+
+
+windows:
+anaconda3+mingw64+cython
+
+cython --embed -o np.c np.py
+
+gcc hw.c -ID:\Anaconda3\include -LD:\Anaconda3\libs -lpython36 -municode -D MS_WIN64 -fPIC -o hw
+
+
+定义PYTHONHOME,PYTHONPATH变量,（or）删掉其他的python版本。不然运行时会有问题。

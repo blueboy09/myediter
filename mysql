@@ -1,3 +1,6 @@
+grant select on jydb.LC_Dividend to jinyifei@'ip' identified by "jinyifei";
+flush privileges;
+
 【修改data路径】
 
 很多时候，mysql的数据会非常大，数据默认放在/var/lib/mysql，由于/var所划分的空间不够大，所以我们需要将mysql数据存放路径修改一下，放到大分区里面，以便可以应付mysql数据增长。

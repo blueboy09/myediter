@@ -1,0 +1,58 @@
+Installing nginx
+NodeBB by default runs on port 4567, meaning that by default you mustaccess it using a port number in addition to the hostname (e.g. http://example.org:4567)
+
+In order to allow NodeBB to be served without a port, nginx can be set up to proxy all requests to a particular hostname (or subdomain) to an upstream NodeBB server running on any port.
+
+The following is an abbreviation of the Ubuntu PPA nginx installation instructions.
+
+$ sudo add-apt-repository ppa:nginx/stable
+$ sudo apt-get update
+$ sudo apt-get install -y nginx
+Verify the installation of nginx
+
+$ nginx -v
+nginx version: nginx/1.12.2
+and that the service will run
+
+$ sudo systemctl start nginx
+$ sudo systemctl status nginx
+You should now be able to go to your site's address in your browser and see the default Welcome to nginx! message.
+
+Configuring nginx
+NGINX-served sites are contained in a server block which are normally stored in separate files from the main nginx config (which is very rarely edited).
+
+When installing with the ppa above, the best way to install new nginx configs is to add new files in /etc/nginx/sites-available (like /etc/nginx/sites-available/forum.example.org). You then must link these files from sites-available to sites-enabled.
+
+The following demonstrates a typical series of commands when creating a new nginx config:
+
+$ cd /etc/nginx/sites-available
+$ sudo nano forum.example.com # config entered into file and saved
+$ cd ../sites-enabled
+$ sudo ln -s ../sites-available/forum.example.com
+Below is an example configuration for NodeBB running on port 4567.
+
+server {
+    listen 80;
+
+    server_name forum.example.com;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+
+        proxy_pass http://127.0.0.1:4567;
+        proxy_redirect off;
+
+        # Socket.IO Support
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+After making changes to nginx configs, you have to reload the service for changes to take effect:
+
+$ sudo systemctl reload nginx
+For more information, go to the configuring nginx page.

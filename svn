@@ -53,3 +53,16 @@ sudo htpasswd -m /etc/apache2/dav_svn.passwd user2
 Step 6 – Access Repository in Browser
 Use HTTP URLs to access your repository in the browser. It will prompt for authentication. Use login credentials created in Step 5. Change example.com with your system hostname, domain name or IP address.
  http://example.com/svn/myrepo/
+ 
+Step 7 - Privilege. 
+    [groups] 
+    everyone = robert, tommy, songjy, zhengyong, orcus, zhangq 
+    groupA = robert, zhangq 
+    groupB = orcus, tommy 
+    [projectA:/] 
+    @groupA = rw 
+    @everyone = r 
+    [projectB:/] 
+    @everyone = r 
+    @groupB = rw 
+ 

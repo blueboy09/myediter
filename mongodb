@@ -1,0 +1,32 @@
+Configure MongoDB
+General MongoDB administration is done through the MongoDB Shell mongo. A default installation of MongoDB listens on port 27017 and is accessible locally. Access the shell:
+
+$ mongo
+Switch to the built-in admin database:
+
+> use admin
+Create an administrative user (the is different from the nodebb user we'll create later). Replace the placeholder <Enter a secure password> with your own selected password. Be sure that the < and > are also not left behind.
+
+> db.createUser( { user: "admin", pwd: "<Enter a secure password>", roles: [ { role: "readWriteAnyDatabase", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )
+This user is scoped to the admin database to manage MongoDB once authorization has been enabled.
+
+To initially create a database that doesn't exist simply use it. Add a new database called nodebb:
+
+> use nodebb
+The database will be created and context switched to nodebb. Next create the nodebb user with the appropriate privileges:
+
+> db.createUser( { user: "nodebb", pwd: "<Enter a secure password>", roles: [ { role: "readWrite", db: "nodebb" }, { role: "clusterMonitor", db: "admin" } ] } )
+The readWrite permission allows NodeBB to store and retrieve data from the nodebb database. The clusterMonitor permission provides NodeBB read-only access to query database server statistics which are then exposed in the NodeBB Administrative Control Panel (ACP).
+
+Exit the Mongo Shell:
+
+> quit()
+Enable database authorization in the MongoDB configuration file /etc/mongod.conf by appending the following lines:
+
+security:
+  authorization: enabled
+Restart MongoDB and verify the administrative user created earlier can connect:
+
+$ sudo systemctl restart mongod
+$ mongo -u admin -p your_password --authenticationDatabase=admin
+If everything is configured correctly the Mongo Shell will connect. Exit the shell.

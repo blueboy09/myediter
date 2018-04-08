@@ -1,6 +1,14 @@
 docker volume create -d local-persist -o mountpoint=/backup/user --name=user
 sudo nvidia-docker run -d -P --name intern -v share_data:/data/share_data -v jinyifei:/backup astrobob/ubuntu-cuda9.0
 
+
+docker save -o <save image to path> <image name>
+Then copy your image to a new system with regular file transfer tools such as cp or scp. After that you will have to load the image into docker:
+
+docker load -i <path to image tar file>
+PS: You may need to sudo all commands.
+
+
 # docker initialization install:
 docker
 docker-machine

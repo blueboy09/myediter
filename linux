@@ -1,0 +1,16 @@
+
+ps -aux | grep tomcat
+
+发现并没有8080端口的Tomcat进程。
+
+使用命令：netstat –apn
+
+查看所有的进程和端口使用情况。
+
+进一步使用命令：ps -aux | grep java，或者直接：ps -aux | grep pid 
+
+就可以明确知道8080端口是被哪个程序占用了！然后判断是否使用KILL命令干掉！
+
+方法二：直接使用 netstat   -anp   |   grep  portno
+即：netstat -apn | grep 8080
+

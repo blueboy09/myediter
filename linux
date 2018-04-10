@@ -14,3 +14,47 @@ ps -aux | grep tomcat
 方法二：直接使用 netstat   -anp   |   grep  portno
 即：netstat -apn | grep 8080
 
+
+
+一、常用命令：
+
+（1）创建用户命令两条：
+
+adduser
+
+useradd
+
+（2）用户删除命令：
+
+userdel
+
+
+
+二、两个用户创建命令之间的区别
+
+adduser： 会自动为创建的用户指定主目录、系统shell版本，会在创建时输入用户密码。
+
+useradd：需要使用参数选项指定上述基本设置，如果不使用任何参数，则创建的用户无密码、无主目录、没有指定shell版本。
+
+方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉
+
+## Allows people in group wheel to run all commands
+%wheel    ALL=(ALL)    ALL
+
+然后修改用户，使其属于root组（wheel），命令如下：
+
+#usermod -g root tommy
+
+修改完毕，现在可以用tommy帐号登录，然后用命令 su – ，即可获得root权限进行操作。
+
+方法二：修改 /etc/sudoers 文件，找到下面一行，在root下面添加一行，如下所示：
+
+## Allow root to run any commands anywhere
+root    ALL=(ALL)     ALL
+tommy   ALL=(ALL)     ALL
+
+修改完毕，现在可以用tommy帐号登录，然后用命令 sudo – ，即可获得root权限进行操作。
+
+方法三：修改 /etc/passwd 文件，找到如下行，把用户ID修改为 0 ，如下所示：
+tommy:x:0:33:tommy:/data/webroot:/bin/bash
+

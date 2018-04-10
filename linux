@@ -58,3 +58,6 @@ tommy   ALL=(ALL)     ALL
 方法三：修改 /etc/passwd 文件，找到如下行，把用户ID修改为 0 ，如下所示：
 tommy:x:0:33:tommy:/data/webroot:/bin/bash
 
+http://cn.linux.vbird.org/linux_basic/0210filepermission_files/0210filepermission_2.gif
+http://cn.linux.vbird.org/linux_basic/0210filepermission_files/0210filepermission_3.gif
+

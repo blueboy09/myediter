@@ -1,3 +1,4 @@
+
 docker volume create -d local-persist -o mountpoint=/backup/user --name=user
 sudo nvidia-docker run -d -P --name intern -v share_data:/data/share_data -v jinyifei:/backup astrobob/ubuntu-cuda9.0
 
@@ -100,6 +101,9 @@ docker volume create -d local-persist -o mountpoint=/home/docker_users/user --na
 sudo nvidia-docker run -d -p 0.0.0.0:3410:22 -P  -v share_data:/home/share_data -v jinyifei:/home/jinyifei astrobob/ubuntu-lab:latest
 
 
+Docker 中文
+ ENV LANG C.UTF-8
+ 
 docker 
 
 docker run -t -i ubuntu:15.10 /bin/bash 

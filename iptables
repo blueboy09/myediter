@@ -1,0 +1,2 @@
+iptables -I INPUT -p TCP --dport 80 -j DROP
+iptables -I INPUT -s 46.166.150.22 -p TCP --dport 80 -j ACCEPT

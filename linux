@@ -61,3 +61,7 @@ tommy:x:0:33:tommy:/data/webroot:/bin/bash
 http://cn.linux.vbird.org/linux_basic/0210filepermission_files/0210filepermission_2.gif
 http://cn.linux.vbird.org/linux_basic/0210filepermission_files/0210filepermission_3.gif
 
+
+释放缓存
+sync
+echo 3 > /proc/sys/vm/drop_caches

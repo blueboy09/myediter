@@ -1,6 +1,6 @@
 
 docker volume create -d local-persist -o mountpoint=/backup/user --name=user
-sudo nvidia-docker run -d -P --name intern -v share_data:/data/share_data -v jinyifei:/backup astrobob/ubuntu-cuda9.0
+sudo nvidia-docker run -d -p --shm-size=512m --name intern -v share_data:/data/share_data -v jinyifei:/backup astrobob/ubuntu-cuda9.0
 
 
 docker save -o <save image to path> <image name>

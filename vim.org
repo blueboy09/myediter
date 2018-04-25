@@ -1,6 +1,6 @@
 * Vundle
 
-https://raw.githubusercontent.com/VundleVim/Vundle.vim/master/README_ZH_CN.md
+[ReadMe](https://raw.githubusercontent.com/VundleVim/Vundle.vim/master/README_ZH_CN.md)
 
 ## [帮助维护Vundle](https://github.com/VundleVim/Vundle.vim/issues/383)
 

@@ -1,0 +1,13 @@
+htop
+
+top
+
+ps
+
+iotop
+
+iostat
+
+netstat
+
+hdparm -Tt /dev/sda

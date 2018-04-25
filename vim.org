@@ -24,7 +24,7 @@ https://raw.githubusercontent.com/VundleVim/Vundle.vim/master/README_ZH_CN.md
 
 [Vundle] 正在经历一个 [interface change], 请通过以下方式获取最新信息.
 
-讨论和技术支持:[![Gitter-chat](https://badges.gitter.im/VundleVim/Vundle.vim.svg)](https://gitter.im/VundleVim/Vundle.vim)
+讨论和技术支持:[Gitter-chat](https://badges.gitter.im/VundleVim/Vundle.vim.svg)](https://gitter.im/VundleVim/Vundle.vim)
 
 ![Vundle-installer](http://i.imgur.com/Rueh7Cc.png)
 

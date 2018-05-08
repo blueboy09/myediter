@@ -1,0 +1,5 @@
+apt-get update
+
+/var/lib/apt/lists/
+/etc/apt/sources.list/
+

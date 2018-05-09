@@ -138,3 +138,15 @@ CMD    ["/usr/sbin/sshd", "-D", "-o", "Port 2022"]
 docker build -t ssh -< sshDockerfile
 docker run -d --net host ssh
 ssh test@<host IP> -p 2022
+
+
+sudo docker info | grep "Docker Root Dir"
+service docker stop
+mv /var/lib/docker /root/data/docker
+ln -s /root/data/docker /var/lib/docker
+
+/etc/default/docker
+OPTIONS=--graph="/root/data/docker" -H fd://
+# 或者
+DOCKER_OPTS="-g /root/data/docker"
+

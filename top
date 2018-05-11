@@ -1,13 +1,18 @@
+#CPU 内存
 htop
-
 top
 
-ps
+#进程
+ps 
+job
 
+# io
 iotop
-
 iostat
 
+#net
 netstat
+ifstat
 
+#磁盘测速
 hdparm -Tt /dev/sda

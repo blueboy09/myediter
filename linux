@@ -120,3 +120,23 @@ echo 3 > /proc/sys/vm/drop_caches
 程序
 
 # rpm -qa                # 查看所有安装的软件包
+
+sudo apt install nfs-common
+sudo apt install cifs-utils
+
+1. 服务器端
+在服务器配置/etc/export 添加可以共享的文件夹和允许的客户端地址 
+/home/dir 192.168.20.203(rw,no_root_squash,async) 
+要加上no_root_squash,async，不然会出现reason given by server: Permission denied
+
+重启nfs服务器： 
+service nfs restart
+
+2. 客户端
+在客户端运行
+
+mkdir -p /mnt/dir    //创建挂载点
+mount -t nfs 192.168.20.204:/home/dir /home/dir
+
+一定要先创建挂载点，不然会出现mount point does not exist的错误
+

@@ -7,7 +7,37 @@ Switch to the built-in admin database:
 > use admin
 Create an administrative user (the is different from the nodebb user we'll create later). Replace the placeholder <Enter a secure password> with your own selected password. Be sure that the < and > are also not left behind.
 
+db.getUsers()
+mongostat --username=admin --password=mypassword  --authenticationDatabase=admin
+
 > db.createUser( { user: "admin", pwd: "<Enter a secure password>", roles: [ { role: "readWriteAnyDatabase", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )
+
+db.updateUser("admin",
+  {
+        "roles" : [
+            {
+                "role" : "userAdminAnyDatabase",
+                "db" : "admin"
+            },
+            {
+                "role" : "readWriteAnyDatabase",
+                "db" : "admin"
+            },
+            {
+                "role" : "dbAdminAnyDatabase",
+                "db" : "admin"
+            },
+            {
+                "role" : "clusterAdmin",
+                "db" : "admin"
+            },
+            {
+                "role" : "clusterMonitor",
+                "db" : "admin"
+            }
+        ]
+    }
+)
 This user is scoped to the admin database to manage MongoDB once authorization has been enabled.
 
 To initially create a database that doesn't exist simply use it. Add a new database called nodebb:

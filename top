@@ -12,6 +12,7 @@ iostat
 
 #net
 netstat
+nload
 nethogs: 按进程查看流量占用
 iptraf: 按连接/端口查看流量
 ifstat: 按设备查看流量

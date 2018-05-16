@@ -4,6 +4,16 @@ General MongoDB administration is done through the MongoDB Shell mongo. A defaul
 $ mongo
 Switch to the built-in admin database:
 
+chown -R mongodb:mongodb /var/lib/mongodb/
+chown -R mongodb:mongodb /var/log/mongodb/
+chown -R mongodb:mongodb /var/run/mongodb/
+systemctl start mongod
+
+rm /tmp/mongo27017.sock
+
+Mongo Script
+https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/
+
 > use admin
 Create an administrative user (the is different from the nodebb user we'll create later). Replace the placeholder <Enter a secure password> with your own selected password. Be sure that the < and > are also not left behind.
 

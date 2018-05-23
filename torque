@@ -4,3 +4,21 @@ service trqauthd start
 
 
 qmgr -c 'p s'
+
+ssh-keygen -t rsa
+
+ssh-copy-id [-i [identity_file]] [user@]machine
+
+Manual steps to copy keys:
+
+> scp ~/.ssh/id_rsa.pub destHost:~ (enter password)
+
+Create an authorized_keys file on each destination host:
+
+> ssh destHost (enter password)
+
+> cat id_rsa.pub >> .ssh/authorized_keys
+
+If the .ssh directory does not exist, create it with 700 privileges (mkdir .ssh; chmod 700 .ssh):
+
+> chmod 700 .ssh/authorized_keys

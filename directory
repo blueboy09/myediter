@@ -23,6 +23,10 @@
 #torque
 /etc/torque
 /var/spool/torque
+/usr/local/torque
 /etc/hosts
 /ect/hostname
 
+#maui
+/usr/local/maui
+/usr/local/maui/sbin/maui

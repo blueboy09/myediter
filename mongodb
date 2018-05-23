@@ -70,3 +70,7 @@ Restart MongoDB and verify the administrative user created earlier can connect:
 $ sudo systemctl restart mongod
 $ mongo -u admin -p your_password --authenticationDatabase=admin
 If everything is configured correctly the Mongo Shell will connect. Exit the shell.
+
+$db.changeUserPassword('tank2','test'); 
+
+

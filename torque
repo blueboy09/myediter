@@ -1,0 +1,6 @@
+service pbs_server status
+service pbs_sched status
+service trqauthd start
+
+
+qmgr -c 'p s'

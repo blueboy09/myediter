@@ -10,6 +10,8 @@
 #docker
 /var/lib/docker/
 /lib/systemd/system/docker.service
+/etc/default/docker
+
 
 #mysql
 /etc/mysql

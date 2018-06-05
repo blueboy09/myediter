@@ -1,0 +1,30 @@
+0、环境：
+服务器：192.168.20.204 
+客户端：192.168.20.203
+
+1、NFS服务
+NFS 是Network File System的缩写，即网络文件系统。一种使用于分散式文件系统的协定，由Sun公司开发，于1984年向外公布。功能是通过网络让不同的机器、不同的操作系统能够彼此分享个别的数据，让应用程序在客户端通过网络访问位于服务器磁盘中的数据，是在类Unix系统间实现磁盘文件共享的一种方法。
+
+NFS也可实现局域网硬盘挂载（文件夹），并可配置访问权限， 配置挂载后就像使用本地文件夹一样
+
+1. 服务器端
+在服务器配置/etc/export 添加可以共享的文件夹和允许的客户端地址 
+/home/dir 192.168.20.203(rw,no_root_squash,async) 
+要加上no_root_squash,async，不然会出现reason given by server: Permission denied
+
+重启nfs服务器： 
+service nfs restart
+
+2. 客户端
+在客户端运行
+
+mkdir -p /mnt/dir    //创建挂载点
+mount -t nfs 192.168.20.204:/home/dir /home/dir
+1
+2
+一定要先创建挂载点，不然会出现mount point does not exist的错误
+
+3. RPC Error
+RPC Error: Program not registered错误 
+服务没启动。。 
+运行service nfs restart

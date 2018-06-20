@@ -12,6 +12,9 @@
 /lib/systemd/system/docker.service
 /etc/default/docker
 
+# source list
+/etc/apt/sources.list
+/etc/apt/sources.list.d
 
 #mysql
 /etc/mysql

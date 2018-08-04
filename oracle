@@ -8,10 +8,15 @@ emca -config dbcontrol db
 select file_Name from dba_data_files
 create user RDHISV151008 identified by eplugger;(创建用户设置密码)     
 alter user RDHISV151008 default tablespace RDHISV151008;(绑定表空间到用户)  
+grant dba to RDHISV151008;(赋权限)  
 
 输入sqlplus /nolog，回车；输入“conn / as sysdba”； 
 
 ALTER USER username ACCOUNT UNLOCK;
+
+
+select username,default_tablespace from dba_users where username='SYSTEM'
+
 
 八、删除ORACLE
 

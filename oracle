@@ -1,0 +1,5 @@
+emctl status dbconsole
+
+set oracle_sid=orcl
+
+emca -config dbcontrol db

@@ -1,5 +1,32 @@
-emctl status dbconsole
+select file_Name from dba_data_filesemctl status dbconsole
 
 set oracle_sid=orcl
 
 emca -config dbcontrol db
+
+
+select file_Name from dba_data_files
+create user RDHISV151008 identified by eplugger;(创建用户设置密码)     
+alter user RDHISV151008 default tablespace RDHISV151008;(绑定表空间到用户)  
+
+输入sqlplus /nolog，回车；输入“conn / as sysdba”； 
+
+ALTER USER username ACCOUNT UNLOCK;
+
+八、删除ORACLE
+
+　如：ORACLE安装路径为：C:\ORACLE
+　　实现方法： 
+　　1、 开始－＞设置－＞控制面板－＞管理工具－＞服务
+　　停止所有Oracle服务。
+　　2、 运行regedit，选择HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE，按del键删除这个入口。
+　　3、 运行regedit，选择HKEY_LOCAL_MACHINE\SYSTEM\CurrentControslSet\Services，滚动
+　　这个列表，删除所有Oracle入口。
+　　4、 运行refedit，
+　　HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application，
+　　删除所有Oracle入口。
+　　5、 从桌面上、STARTUP（启动）组、程序菜单中，删除所有有关Oracle的组和图标
+　　6、 删除\Program Files\Oracle目录
+　　7、 重新启动计算机，重起后才能完全删除Oracle所在目录
+　　8、 删除与Oracle有关的文件，选择Oracle所在的缺省目录C:\Oracle，删除
+

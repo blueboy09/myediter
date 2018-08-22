@@ -1,3 +1,8 @@
 gunicorn -k gevent code:application
 
 gunicorn -k egg:meinheld#gunicorn_worker code:application
+
+gunicorn -k eventlet code:application
+sudo apt-get -o Dpkg::Options::="--force-confmiss" install --reinstall netbase
+
+geventwebsocket.gunicorn.workers.GeventWebSocketWorker

@@ -1,0 +1,3 @@
+gunicorn -k gevent code:application
+
+gunicorn -k egg:meinheld#gunicorn_worker code:application

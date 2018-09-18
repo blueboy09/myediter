@@ -140,3 +140,6 @@ mount -t nfs 192.168.20.204:/home/dir /home/dir
 
 一定要先创建挂载点，不然会出现mount point does not exist的错误
 
+#rm all
+docker ps -aq --no-trunc -f status=exited | xargs docker rm
+ps -ef |grep mysql|grep -v grep|awk '{print $2}'|xargs kill -9

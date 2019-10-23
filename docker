@@ -150,3 +150,4 @@ OPTIONS=--graph="/root/data/docker" -H fd://
 # 或者
 DOCKER_OPTS="-g /root/data/docker"
 
+docker ps -aq --no-trunc -f status=exited | xargs docker rm

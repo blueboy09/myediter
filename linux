@@ -143,3 +143,12 @@ mount -t nfs 192.168.20.204:/home/dir /home/dir
 #rm all
 docker ps -aq --no-trunc -f status=exited | xargs docker rm
 ps -ef |grep mysql|grep -v grep|awk '{print $2}'|xargs kill -9
+
+apt update
+rm /boot/vm image
+apt install latest-version
+dpkg --get-selections |grep linux-image
+uname -a 
+sudo apt-get remove linux-image-4.4.0-31-generic
+sudo apt-get autoremove
+sudo dpkg -P linux-image-4.4.0-31-generic
